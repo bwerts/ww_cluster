@@ -1,0 +1,19 @@
+---
+
+- name: Start and enable firewalld
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Enable NAT 
+  ansible.builtin.command: "firewall-cmd --zone=public --add-masquerade --permanent"
+  changed_when: true
+
+- name: Firewall rules for warewulf services
+  ansible.builtin.command: "firewall-cmd --zone=public --permanent --add-service={{ item }}"
+  changed_when: true
+  with_items: "{{ warewulf_services }}"
+
+- name: Reload firewalld
+  ansible.builtin.command: firewall-cmd --reload

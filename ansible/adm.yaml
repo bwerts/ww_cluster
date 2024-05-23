@@ -1,0 +1,8 @@
+---
+
+- name: install and configure warewulf
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - adm
+    - common

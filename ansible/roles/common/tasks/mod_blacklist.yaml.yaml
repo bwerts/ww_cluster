@@ -1,0 +1,8 @@
+---
+
+- name: Place custom modprob.d blacklist conf
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/etc/modprobe.d/custom_blacklist.conf"
+    dest: /etc/modprobe.d/custom_blacklist.conf
+    mode: preserve
+

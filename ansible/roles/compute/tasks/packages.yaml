@@ -1,0 +1,6 @@
+---
+
+- name: Install list of compute packages
+  ansible.builtin.package:
+    name: "{{ compute_packages }}"
+    state: present

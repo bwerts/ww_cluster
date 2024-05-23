@@ -1,0 +1,17 @@
+---
+
+- name: Place sysctl.d file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/etc/sysctl.d/ipv4_forward.conf"
+    dest: /etc/sysctl.d/ipv4_forward.conf
+    mode: preserve
+
+- name: Check ipv4.ip_forward status 
+  ansible.builtin.command: >
+    sysctl net.ipv4.ip_forward 
+  register: ipv4_ip_forward_status
+
+- name: Enable ipv4.ip_forward
+  ansible.builtin.command: >
+    sysctl -w net.ipv4.ip_forward=1
+  when: "'0' in ipv4_ip_forward_status.stdout"

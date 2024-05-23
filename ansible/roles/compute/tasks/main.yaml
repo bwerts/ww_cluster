@@ -1,0 +1,4 @@
+---
+
+- name: Install compute packages
+  ansible.builtin.include_tasks: packages.yaml

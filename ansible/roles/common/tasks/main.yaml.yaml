@@ -1,0 +1,5 @@
+---
+
+- name: Configure modprobe blacklist
+  ansible.builtin.include_tasks: mod_blacklist.yaml
+

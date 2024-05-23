@@ -1,0 +1,31 @@
+---
+
+- name: Install warewulf 
+  ansible.builtin.package:
+    name: "{{ ww_rpm_url }}"
+    disable_gpg_check: true
+    state: present
+
+- name: Place warewulf.conf
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/etc/warewulf/warewulf.conf"
+    dest: /etc/warewulf/warewulf.conf
+    mode: preserve
+  register: conf_status
+
+- name: Place nodes.conf
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/etc/warewulf/nodes.conf"
+    dest: /etc/warewulf/nodes.conf
+    mode: preserve
+
+- name: Start and enble warewulfd
+  ansible.builtin.service:
+    name: warewulfd
+    state: started
+    enabled: true
+
+- name: Warewulf configure all services
+  ansible.builtin.shell: >
+    wwctl configure --all
+  when: conf_status.changed
