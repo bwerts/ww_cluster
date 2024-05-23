@@ -3,9 +3,9 @@
 - name: setup system misc config
   ansible.builtin.include_tasks: system_misc.yaml
 
-#- name: install and configure warewulf
-#  ansible.builtin.include_tasks: warewulf.yaml
+- name: install and configure warewulf
+  ansible.builtin.include_tasks: warewulf.yaml
 
-#- name: Setup nat and firewall rules
-#  ansible.builtin.include_tasks: firewalld.yaml
+- name: Setup nat and firewall rules
+  ansible.builtin.include_tasks: firewalld.yaml
 
