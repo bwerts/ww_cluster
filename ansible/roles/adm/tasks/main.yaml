@@ -5,6 +5,7 @@
 
 - name: install and configure warewulf
   ansible.builtin.include_tasks: warewulf.yaml
+  tags: add_nodes
 
 - name: Setup nat and firewall rules
   ansible.builtin.include_tasks: firewalld.yaml
