@@ -1,0 +1,9 @@
+---
+
+  - name: Add an ethernet connection with static IP configuration
+    community.general.nmcli:
+      conn_name: ww_private 
+      ifname: "{{ if_name }}"
+      type: "{{ if_type }}"
+      ip4: "{{ if_addr }}"
+      state: present

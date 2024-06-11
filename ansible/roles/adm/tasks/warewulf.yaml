@@ -13,7 +13,7 @@
     mode: preserve
   register: ww_conf_status
 
-- name: node tasks
+- name: Node tasks
   tags: add_nodes
   block:
   - name: Place nodes.conf
@@ -27,6 +27,18 @@
     ansible.builtin.shell: >
       wwctl overlay build
     when: nodes_conf_status.changed
+
+  - name: Pull warewulfd status
+    ansible.builtin.shell: >
+      systemctl status warewulfd | grep -oE "running|inactive"
+    register: warewulfd_status
+    when: nodes_conf_status.changed
+
+  - name: Reload warewulfd
+    ansible.builtin.service:
+      name: warewulfd
+      state: reloaded
+    when: (nodes_conf_status.changed and warewulfd_status.stdout == "running")
 
 - name: Start and enble warewulfd
   ansible.builtin.service:

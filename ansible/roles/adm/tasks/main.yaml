@@ -1,5 +1,8 @@
 ---
 
+- name: configure interfaces
+  ansible.builtin.include_tasks: interfaces.yaml
+
 - name: setup system misc config
   ansible.builtin.include_tasks: system_misc.yaml
 

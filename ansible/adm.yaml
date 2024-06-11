@@ -1,8 +1,8 @@
 ---
 
-- name: install and configure warewulf
+- name: Configure adm node
   hosts: localhost
   gather_facts: false
   roles:
-    - adm
     - common
+    - adm

@@ -1,6 +1,6 @@
 ---
 
-- name: Configure compute images
+- name: Configure compute nodes
   hosts: localhost
   gather_facts: false
   roles:

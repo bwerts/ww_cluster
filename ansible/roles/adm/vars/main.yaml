@@ -6,3 +6,8 @@ warewulf_services:
   - warewulf
   - dhcp
   - tftp
+
+# adm interface settings for warewulf private network    
+if_type: ethernet
+if_addr: "10.0.0.1/24"
+if_name: ens19
